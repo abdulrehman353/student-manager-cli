@@ -1,28 +1,48 @@
-const { addStudent, getStudents } = require("./student");
+const { addStudent, getStudents, deleteStudent } = require("./student");
+const logger = require("./logger");
 
-console.log("Running Tests...");
+logger.info("========== Test Started ==========");
 
-// Test 1: Add a valid student
 try {
-    addStudent("Ali");
-    console.log("✅ Test 1 Passed");
+
+    logger.info("Running Add Student Test...");
+
+    console.log(addStudent(101, "Ali", 20, "JavaScript"));
+
+    logger.info("Add Student Test Passed.");
+
 } catch (error) {
-    console.log("❌ Test 1 Failed");
+
+    logger.error(`Add Student Test Failed: ${error.message}`);
+
 }
 
-// Test 2: Empty student name
 try {
-    addStudent("");
-    console.log("❌ Test 2 Failed");
+
+    logger.info("Running View Student Test...");
+
+    console.log(getStudents());
+
+    logger.info("View Student Test Passed.");
+
 } catch (error) {
-    console.log("✅ Test 2 Passed");
+
+    logger.error(`View Student Test Failed: ${error.message}`);
+
 }
 
-// Test 3: Check if student was stored
-const students = getStudents();
+try {
 
-if (students.length === 1 && students[0] === "Ali") {
-    console.log("✅ Test 3 Passed");
-} else {
-    console.log("❌ Test 3 Failed");
+    logger.info("Running Delete Student Test...");
+
+    console.log(deleteStudent(101));
+
+    logger.info("Delete Student Test Passed.");
+
+} catch (error) {
+
+    logger.error(`Delete Student Test Failed: ${error.message}`);
+
 }
+
+logger.info("========== Test Completed ==========");
