@@ -1,12 +1,13 @@
 const prompt = require("prompt-sync")();
-const { addStudent, getStudents } = require("./student");
+const { addStudent, getStudents, deleteStudent } = require("./student");
 
 while (true) {
 
     console.log("\n===== Student Manager =====");
     console.log("1. Add Student");
     console.log("2. View Students");
-    console.log("3. Exit");
+    console.log("3. Delete Student");
+    console.log("4. Exit");
 
     const choice = prompt("Choose an option: ");
 
@@ -42,14 +43,30 @@ while (true) {
             console.log("\n===== Student List =====");
 
             students.forEach((student) => {
-    console.log(student.getDetails());
-});
+                console.log(student.getDetails());
+            });
 
         }
 
     }
 
     else if (choice === "3") {
+
+        try {
+
+            const id = prompt("Enter Student ID to delete: ");
+
+            console.log(deleteStudent(id));
+
+        } catch (error) {
+
+            console.log("Error:", error.message);
+
+        }
+
+    }
+
+    else if (choice === "4") {
 
         console.log("Goodbye!");
         break;
